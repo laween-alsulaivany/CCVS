@@ -1,0 +1,18 @@
+{
+    "turn": 1,
+    "board": "sample_board_representation",
+    "votes": {
+        "e2e4": 5,
+        "d2d4": 3
+    },
+    "teams": {
+        "white": [
+            "Alice",
+            "Bob"
+        ],
+        "black": [
+            "Charlie",
+            "Dana"
+        ]
+    }
+}
