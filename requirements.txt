@@ -1,0 +1,8 @@
+PyGithub 
+apscheduler
+setuptools
+pytest
+python-dotenv
+
+## "pip install -e ." for allowing the package to be installed in editable mode
+## "pip install -r requirements.txt" for installing the dependencies (add more dependencies as you need)

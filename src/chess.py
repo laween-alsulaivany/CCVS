@@ -1,4 +1,11 @@
 # src/chess.py
+
+"""
+This is just a place holder for the chess board rendering function.
+You can replace this with your own chess board rendering function whoever is responsible for this part.
+"""
+
+
 def render_board():
     """
     Render a basic chess board using Unicode.
