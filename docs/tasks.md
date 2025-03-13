@@ -1,23 +1,27 @@
 # Tasks
 
-## Authentication
+## Authentication : Judah
 
 Determine the integration method (using OAuth2 protocols maybe).
 Build a simple module that authenticates a user and validates if its a student account.
 
-## Game Logic
+## Game Logic : Ben
 
 Build the core classes (Board and Pieces) and game logic.
 Render the board using Unicode (or something more visually friendly).
 Document commands and how to vote/make moves (--help).
 
-## Voting System Implementation
+## GUI Interface: Ben
+
+Build the terminal interface that will communicate with the voting API.
+
+## Voting System Implementation : Ugi
 
 Create an API or command interface for vote submissions.
 Write the logic to count votes and select the winning move.
 Decide on a tie-break mechanism (maybe random selection).
 
-## Team Management & User Activity
+## Team Management & User Activity : James
 
 Choose between static and dynamic approach for teams (whether users will stay on the same team or switch to rebalance every day).
 Implement a system to track the user activity and assign points based on participation (encourage activity).
@@ -42,7 +46,7 @@ Create a module to display the game board using LEGO bricks.
 Develop an API endpoint to output the current board state
 Design a synchronization method and develop an API to output the current board state and update the the LEGO board.
 
-## Documentation & Project Management and (TESTING?)
+## Documentation & Project Management and (TESTING?) : Laween and Judah
 
 Writing unit tests
 Documenting the codebase

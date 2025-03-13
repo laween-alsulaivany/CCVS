@@ -82,8 +82,13 @@ class Board:
 #     piece = piece_class()
 #     print(f"{piece_class.__name__}: White: {piece.white}    Black: {piece.black}" )
 
-board = Board()
-board.makeBoard()
-board.printBoardWhite()
-print()
-board.printBoardBlack()
+def main():
+    board = Board()
+    board.makeBoard()
+    board.printBoardWhite()
+    print()
+    board.printBoardBlack()
+
+
+if __name__ == "__main__":
+    main()
