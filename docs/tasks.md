@@ -33,7 +33,7 @@ Create a module to commit game state at 4:29 to GitHub (we can use a library lik
 Store game data in a JSON file or a database (like SQLite?).
 Implement a system to restore game state from the last commit (for restoring after changing game state or maybe a crash).
 
-## Statistics and Analytics Module
+## Statistics and Analytics Module : Donovan
 
 Create a module to track game statistics.
 Implement a system to display user rankings and game statistics (turn number, team sizes, participation frequency).
