@@ -1,3 +1,5 @@
+from GUI_class import GUI
+
 class Piece:
     white = ''
     black = ''
@@ -36,7 +38,7 @@ class King(Piece):
 class Board:
     board = [['' for _ in range(8)] for _ in range(8)]
     def __init__ (self):
-        self.self = self
+        pass
 
     def makeBoard(self):
         for row in range(8):
@@ -69,25 +71,31 @@ class Board:
             self.board[6][i] = Pawn().white + " "
     
     def printBoardWhite(self):
+        num = 1
         for row in self.board:
-            print("".join(row))
+            print("".join(row) + ' ' + str(num))
+            num += 1
+        for i in range(ord('A'), ord('H') + 1):
+            print(chr(i), end = ' ')
 
     def printBoardBlack(self):
+        num = 8
         for row in self.board[::-1]:
-            print("".join(row))
-
-# pieces = [Pawn, Rook, Knight, Bishop, Queen, King]
-
-# for piece_class in pieces:
-#     piece = piece_class()
-#     print(f"{piece_class.__name__}: White: {piece.white}    Black: {piece.black}" )
+            print("".join(row[::-1]) + ' ' + str(num))
+            num -= 1
+        for i in range(ord('H'), ord('A') - 1, -1):
+            print(chr(i), end = ' ')
 
 def main():
     board = Board()
     board.makeBoard()
+    print("Displaying board from white team's perspective")
     board.printBoardWhite()
-    print()
+    print("\n\nDisplaying board from black team's perspective")
     board.printBoardBlack()
+    gui = GUI()
+    print("\n\nDisplaying entire GUI")
+    gui.displayGUI()
 
 
 if __name__ == "__main__":
