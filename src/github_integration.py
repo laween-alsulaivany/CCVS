@@ -8,7 +8,12 @@ import os
 from github import Github, Auth
 
 
-def commit_game_state_to_github(token: str, repo_name: str, file_path: str, commit_message: str = "Update game state", branch: str = "development") -> None:
+def commit_game_state_to_github(
+        token: str,
+        repo_name: str,
+        file_path: str,
+        commit_message: str = "Update game state",
+        branch: str = "development") -> None:
     """
     Commits the game state file to the specified GitHub repository and branch.
 

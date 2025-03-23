@@ -1,48 +1,59 @@
+from GUI_class import GUI
+
+
 class Piece:
     white = ''
     black = ''
     legal_moves = []
 
+
 class Pawn(Piece):
-    def __init__ (self):
-          Piece.white = '\u265F'
-          Piece.black = '\u2659'
+    def __init__(self):
+        Piece.white = '\u265F'
+        Piece.black = '\u2659'
+
 
 class Rook(Piece):
-    def __init__ (self):
+    def __init__(self):
         Piece.white = '\u265C'
         Piece.black = '\u2656'
 
+
 class Knight(Piece):
-    def __init__ (self):
+    def __init__(self):
         Piece.white = '\u265E'
         Piece.black = '\u2658'
 
+
 class Bishop(Piece):
-    def __init__ (self):
+    def __init__(self):
         Piece.white = '\u265D'
         Piece.black = '\u2657'
 
+
 class Queen(Piece):
-    def __init__ (self):
+    def __init__(self):
         Piece.white = '\u265B'
         Piece.black = '\u2655'
 
+
 class King(Piece):
-    def __init__ (self):
+    def __init__(self):
         Piece.white = '\u265A'
         Piece.black = '\u2654'
 
+
 class Board:
     board = [['' for _ in range(8)] for _ in range(8)]
-    def __init__ (self):
-        self.self = self
+
+    def __init__(self):
+        pass
 
     def makeBoard(self):
         for row in range(8):
             for col in range(8):
                 # even spaces are white squares
-                if (row+col)%2 == 0:
+                if (row + col) % 2 == 0:
                     self.board[row][col] = '🔲'
                 # odd spaces are black squares
                 else:
@@ -67,20 +78,21 @@ class Board:
         self.board[7][5] = Bishop().white + " "
         for i in range(8):
             self.board[6][i] = Pawn().white + " "
-    
+
     def printBoardWhite(self):
         for row in self.board:
-            print("".join(row))
+            print("".join(row) + ' ' + str(num))
+            num += 1
+        for i in range(ord('A'), ord('H') + 1):
+            print(chr(i), end=' ')
 
     def printBoardBlack(self):
         for row in self.board[::-1]:
-            print("".join(row))
+            print("".join(row[::-1]) + ' ' + str(num))
+            num -= 1
+        for i in range(ord('H'), ord('A') - 1, -1):
+            print(chr(i), end=' ')
 
-# pieces = [Pawn, Rook, Knight, Bishop, Queen, King]
-
-# for piece_class in pieces:
-#     piece = piece_class()
-#     print(f"{piece_class.__name__}: White: {piece.white}    Black: {piece.black}" )
 
 def main():
     board = Board()
