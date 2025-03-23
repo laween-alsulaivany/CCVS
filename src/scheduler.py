@@ -1,9 +1,9 @@
 """
-Module to handle the APScheduler for scheduling the commit job. 
+Module to handle the APScheduler for scheduling the commit job.
 
-I used APScheduler to schedule the commit job to run daily at a specific time. 
+I used APScheduler to schedule the commit job to run daily at a specific time.
 The start_scheduler function starts the scheduler and keeps the script running until it is interrupted.
-The scheduled_commit function commits the game state to GitHub using the github_integration module. 
+The scheduled_commit function commits the game state to GitHub using the github_integration module.
 
 
 """

@@ -11,7 +11,9 @@ import os
 DEFAULT_STATE_FILE = "game_state.json"
 
 
-def save_game_state(game_state: dict, filename: str = DEFAULT_STATE_FILE) -> None:
+def save_game_state(
+        game_state: dict,
+        filename: str = DEFAULT_STATE_FILE) -> None:
     """
     Save the game state dictionary to a JSON file.
     (We can change the location of this file later if needed.)
