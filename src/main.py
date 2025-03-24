@@ -16,13 +16,20 @@ ModuleNotFoundError: No module named 'apscheduler'
 
 # from src.data_persistence import save_game_state, load_game_state
 # import scheduler
+import github_integration as GHI
+
+
 
 
 def main():
-    print("Starting CCVS Data Persistence and GitHub Integration module...")
-    # Here we can perform any initial game state updates or operations that we might add later, this will be the file to run to start our chess service.
-    # For now, we just start the scheduler.
-    # scheduler.start_scheduler()
+    print("Starting the Chess CLI...")
+
+    data = GHI.getGameState()
+
+    # handle the arguments
+    
+    
+    
 
 
 if __name__ == "__main__":
