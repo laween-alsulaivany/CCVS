@@ -46,5 +46,6 @@ def main():
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
 
+
 if __name__ == "__main__":
     main()

@@ -9,7 +9,9 @@ from github import Github, Auth
 import data_persistence as DP
 
 # functions to define
-def getGameState() :
+
+
+def getGameState():
     data = DP.load_game_state()
     return
 

@@ -7,7 +7,8 @@ import json
 import os
 
 # Get the absolute path to the data directory (../data/game_state.json)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))           # current file's directory
+# current file's directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "data"))
 DEFAULT_STATE_FILE = os.path.join(DATA_DIR, "game_state.json")
 
@@ -39,7 +40,7 @@ def load_game_state(filename: str = DEFAULT_STATE_FILE) -> dict:
     return game_state
 
 
-## TESTING
+# TESTING
 
 def test1(filename: str = DEFAULT_STATE_FILE) -> None:
     """
