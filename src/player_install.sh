@@ -49,13 +49,60 @@ uninstall() {
     exit 0
 }
 
+make_venv() {
+  if [ -z "$PROJECT_ROOT" ]; then
+    echo "Error: PROJECT_ROOT is not set."
+    return 1
+  fi
+
+  if [ ! -d "$PROJECT_ROOT" ]; then
+    echo "Error: PROJECT_ROOT directory does not exist: $PROJECT_ROOT"
+    return 1
+  fi
+
+  python3 -m venv "$PROJECT_ROOT/venv"
+  if [ $? -ne 0 ]; then
+    echo "Failed to create virtual environment."
+    return 1
+  fi
+
+  source "$PROJECT_ROOT/venv/bin/activate"
+  if [ -f "$PROJECT_ROOT/requirements.txt" ]; then
+    pip install --upgrade pip
+    pip install -r "$PROJECT_ROOT/requirements.txt"
+    echo "Packages installed from requirements.txt"
+  else
+    echo "No requirements.txt found in $PROJECT_ROOT"
+  fi
+  deactivate
+}
+
+delete_venv() {
+  if [ -z "$PROJECT_ROOT" ]; then
+    echo "Error: PROJECT_ROOT is not set."
+    return 1
+  fi
+
+  VENV_PATH="$PROJECT_ROOT/venv"
+
+  if [ -d "$VENV_PATH" ]; then
+    rm -rf "$VENV_PATH"
+    echo "Deleted virtual environment at $VENV_PATH"
+  else
+    echo "No virtual environment found at $VENV_PATH"
+  fi
+}
+
+
 # Handle uninstall argument
 if [ "$1" == "uninstall" ]; then
     uninstall
+    delete_venv
 fi
 
 # Main installation steps
 make_executable
 add_to_path
+make_venv
 
 echo "Installation complete. Restart your terminal or run 'source ~/.bashrc' to update your PATH."

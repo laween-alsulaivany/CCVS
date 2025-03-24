@@ -10,4 +10,4 @@ PARENT_DIR="$( dirname "$SCRIPT_DIR" )"
 cd "$PARENT_DIR/src" || { echo "Failed to enter src directory"; exit 1; }
 
 # Run main.py with all arguments passed to this script
-python3 main.py "$@"
+$PARENT_DIR/venv/bin/python main.py "$@"
