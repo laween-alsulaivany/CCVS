@@ -7,6 +7,10 @@ This will commit the game state file to the specified branch in the repository. 
 import os
 from github import Github, Auth
 
+# functions to define
+def getGameState() :
+    pass
+
 
 def commit_game_state_to_github(
         token: str,
