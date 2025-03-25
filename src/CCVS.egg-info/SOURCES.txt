@@ -1,5 +1,5 @@
 README.md
-setup.py
+pyproject.toml
 src/CCVS.egg-info/PKG-INFO
 src/CCVS.egg-info/SOURCES.txt
 src/CCVS.egg-info/dependency_links.txt
