@@ -7,6 +7,7 @@ This module is responsible for saving and loading the game state to and from a l
 import sys
 import github_integration as GHI
 import data_persistence as DP
+import Tracker
 
 
 def main():
@@ -31,9 +32,13 @@ def main():
         # voting.py
 
         # TODO: Add vote logic here
+        
     elif command == "stats":
         print("Showing statistics...")
         # TODO: Add stats logic here
+        #track = Tracker.ParticipationTracker()
+        Tracker.test_participation_tracker()
+
     elif command == "help":
         print("Available commands:")
         print("  vote   - Vote for a move")
@@ -42,6 +47,7 @@ def main():
         print("  (no arguments) - Run default mode")
     elif command == "test":
         DP.test1()
+        Tracker.test_participation_tracker()
     else:
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
