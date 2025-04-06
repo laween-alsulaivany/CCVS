@@ -1,4 +1,4 @@
-from CLI_class import CLI
+from src.CLI_class import CLI
 import chess
 
 # Overriding the piece displays from the chess library to make it prettier
