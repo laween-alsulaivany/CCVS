@@ -8,6 +8,7 @@ import sys
 import github_integration as GHI
 import data_persistence as DP
 import Tracker
+import game
 
 
 def main():
@@ -28,10 +29,18 @@ def main():
 
     if command == "vote":
         print("Handling vote...")
+        if (len(sys.argv) == 3):
+            # assuming the 3rd argument is a vote.
+            vote = sys.argv[2].lower()
 
-        # voting.py
+            # voting.py
 
-        # TODO: Add vote logic here
+            # TODO: Add vote logic here
+            print(vote)
+            pass
+        else:
+            print("did not provide a vote.")
+
         
     elif command == "stats":
         print("Showing statistics...")
@@ -48,6 +57,7 @@ def main():
     elif command == "test":
         DP.test1()
         Tracker.test_participation_tracker()
+        game.main()
     else:
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
