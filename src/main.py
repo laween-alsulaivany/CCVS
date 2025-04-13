@@ -7,6 +7,7 @@ This module is responsible for saving and loading the game state to and from a l
 import sys
 import github_integration as GHI
 import data_persistence as DP
+from example.the_git_calls import Example
 
 
 def main():
@@ -42,6 +43,9 @@ def main():
         print("  (no arguments) - Run default mode")
     elif command == "test":
         DP.test1()
+    elif command == "example":
+        theGit = Example()
+        
     else:
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
