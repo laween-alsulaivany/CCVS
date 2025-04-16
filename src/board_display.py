@@ -1,4 +1,5 @@
 import chess
+from CLI_class import CLI
 
 # Overriding the piece displays from the chess library to make it prettier
 UNICODE_PIECES = {
@@ -26,3 +27,20 @@ def displayBoardAsString(board):
     rows.append("-----------------------------")
     rows.append("--A  B  C  D  E  F  G  H")
     return "\n".join(rows)
+
+def team(board):
+    current_team = "White" if board.turn == chess.WHITE else "Black"
+    return current_team
+
+def legal_move(board, move):
+    try:
+            # UCI = Universal Chess Interface (common interface used in chess engines)
+            chess_move = chess.Move.from_uci(move)
+            # check if the input is a legal move and perform it if so, then display the board again to
+            # show the move
+            if chess_move in board.legal_moves:
+                return "Your vote was successful"
+            else:
+                return "Illegal move: Try voting for another move!"
+    except ValueError:
+        return ("Illegal move format: use the notation <initial position><target position> e.g. e2e3")
