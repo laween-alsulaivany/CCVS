@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <title>CHESS PAGE</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .output-box {
+            border: 2px solid #ccc;
+            padding: 10px;
+            width: fit-content;
+            background-color: #f9f9f9;
+            font-family: monospace;
+        }
+        .team-box {
+            text-align: left;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 1.6;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="output-box">{{ output | safe }}</div>
+            <div class="team-box">
+                <div>TEAM</div>
+                <div>WHITE</div>
+                <div>IS VOTING</div>
+            </div>
+        </div>
+        <h3>Variables are currently not connected</h3>
+    </body>
+</head>
+<body>
+    <form action="#" method="post">
+        <p><input type="submit" value="Vote"/>
+        <input type= "text" name="user_vote" /></p>
+    </form>
+    <p>Ex: C4G4</p>
+</body>
+</html>
