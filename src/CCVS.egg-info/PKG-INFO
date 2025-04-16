@@ -1,3 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: CCVS
 Version: 0.1
+Author-email: Your Name <you@example.com>
+License: MIT
+Requires-Python: >=3.7
