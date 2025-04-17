@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from datetime import datetime
 from pathlib import Path
 import data_persistence as DP
@@ -26,3 +27,16 @@ if __name__ == "__main__":
     data_dir = go_to_data_dir()
     output_to_test(data_dir) 
     
+
+def get_votes():
+    pass
+
+def get_selected():
+    pass
+
+def tally_participation():
+    pass
+
+def main():
+    pass
+>>>>>>> 65869968cb0362ba5031d18f6543805ab4f7954d
