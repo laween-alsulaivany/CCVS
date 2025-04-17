@@ -53,3 +53,23 @@ if __name__ == "__main__":
     output_to_test(data_dir, votes_str)
     
     
+"""
+
+import requests
+
+def fetch_text_from_url(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises HTTPError for bad responses (4xx or 5xx)
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+        return None
+
+# Example usage:
+url = 'http://127.0.0.1/static/votes.txt'
+content = fetch_text_from_url(url)
+if content:
+    print(content)
+
+"""
