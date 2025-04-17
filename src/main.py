@@ -9,6 +9,8 @@ import github_integration as GHI
 import data_persistence as DP
 import Tracker
 import game
+from pathlib import Path
+import json
 
 
 def main():
@@ -37,6 +39,8 @@ def main():
 
             # TODO: Add vote logic here
             print(vote)
+            save_test_to_vote_json(vote)
+
             pass
         else:
             print("did not provide a vote.")
@@ -61,6 +65,14 @@ def main():
     else:
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
+
+def save_test_to_vote_json(data: str):
+    vote_file = Path.home() / ".vote.json"
+
+    with open(vote_file, "w") as f:
+        json.dump(data, f)
+
+    print(f"Saved to {vote_file}")
 
 
 if __name__ == "__main__":
