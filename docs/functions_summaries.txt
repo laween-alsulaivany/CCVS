@@ -1,0 +1,341 @@
+file_name: board_display.py
+    functions:
+        1. displayBoardAsString(board: Board())
+                Purpose:
+                Converts the current state of the chess board into a human-friendly string representation using Unicode symbols for the pieces and square colors, for display in a terminal.
+
+                Inputs:
+                board: a chess.Board() object from the python-chess library.
+
+                Outputs:
+                Returns a multi-line string that visually represents the board layout.
+
+                Notes:
+                Uses Unicode symbols to represent pieces.
+                Uses alternating emojis ("🔲" and "⬛") to show the color of empty squares.
+                Ranks (numbers) and files (letters) are labeled on all sides for clarity.
+                This function does not print the board directly — it returns the string, so you can print it elsewhere or use it in logs.
+
+        2. team(board)
+                Purpose:
+                Determines whose turn it currently is in the game.
+
+                Inputs:
+                board: a chess.Board() object.
+
+                Outputs:
+                Returns "White" if it is white's turn, or "Black" if it is black's turn.
+
+                Notes:
+                Simple utility function to make it easier to display to the user whose move it is.
+
+        3. legal_move(board, move)
+                Purpose:
+                Checks if a given move string is a legal move in the current game state.
+
+                Inputs:
+                board: a chess.Board() object.
+                move: a string representing the move in UCI format (e.g., "e2e4").
+                
+                Outputs:
+
+                Returns a string message:
+                If the move is legal: "Your vote was successful"
+                If the move is illegal: "Illegal move: Try voting for another move!"
+                If the move format is invalid: "Illegal move format: use the notation <initial position><target position> e.g. e2e3"
+
+                Notes:
+                UCI (Universal Chess Interface) format is expected.
+                Uses try-except to handle invalid input formats cleanly.
+               
+                Important: this function only checks legality, it doesn’t apply the move
+
+file_name: CLI_class.py
+    functions:
+        displayCLI(self, board)
+                Purpose:
+                Displays game information and instructions to the player in the terminal.
+
+                Inputs:
+                self: the instance of the class.
+                board: the chess.Board() object (currently passed in but not yet used inside the function).
+                
+                Behavior:
+
+                Prints:
+                Total games the player has played.
+                Current turn number.
+                Total games won.
+                Placeholder text for captured pieces (not yet implemented).
+                An example move format to help players understand how to play.
+                
+                Notes:
+                Currently, this method is informational only — it does not display the actual board state (that happens with displayBoardAsString() from your other code).
+                
+                Future improvements:
+                You might want to track and show captured pieces.
+                You could integrate this with displayBoardAsString() to show the board along with game stats.
+                Dynamic player name (currently hardcoded as "Ben").
+
+file_name: game.py
+    functions:
+        1. displayBoard(board)
+            Purpose:
+            Prints the current state of the chess board to the terminal, using Unicode symbols for pieces and colored square emojis for empty tiles.
+
+            Inputs:
+            board: a chess.Board() object.
+
+            Behavior:
+
+            Prints:
+            Column (file) labels: A–H.
+            Rank numbers: 8–1.
+            Chess pieces and squares in a grid.
+            Uses alternating symbols ("🔲" and "⬛") for square colors.
+            Replaces chess pieces with corresponding Unicode symbols for clarity.
+
+            Outputs:
+            Prints to terminal (no return value).
+
+        2. main()
+            Purpose:
+            The main function of the chess program. Sets up the game board, shows the initial state, and runs the game loop.
+
+            Flow Summary:
+            Creates a new chess board using the python-chess library.
+            Displays the initial board.
+            Initializes the command-line interface (CLI class).
+            Displays initial CLI information (player stats, example move).
+
+            Runs a game loop:
+            Checks if the game is over.
+            Displays whose turn it is.
+            Shows legal moves.
+            Prompts user input for a move.
+            Validates move format and legality:
+            If valid: applies the move and updates the board display.
+            If invalid: prints an error and asks again.
+            When the game ends, prints "Game over" and displays the final result.
+
+            Inputs:
+            None directly (but user input is collected during the game loop).
+
+            Outputs:
+            Prints board, game status, and messages to the terminal.
+            Ends when the game concludes.
+
+file_name: github_integration.py
+    functions:
+        1. getGameState()
+            Purpose:
+            Loads and returns the current game state from local storage.
+
+            Inputs:
+            None
+
+            Behavior:
+            Calls DP.load_game_state() (from your data_persistence module).
+            However, right now: ⚠️ This function is incomplete.
+            It loads the data but doesn’t return it.
+            It should probably return data so that it can be used later.
+
+            Current Output:
+            Nothing (needs return data).
+
+            Suggested Improvement:
+            def getGameState():
+                data = DP.load_game_state()
+                return data
+
+        2. commit_game_state_to_github
+            Purpose:
+            Commits the local game state file to a specific branch in a GitHub repository.
+
+            Inputs:
+            token (str): GitHub personal access token.
+            repo_name (str): Format "username/repo".
+            file_path (str): Local path to the game state file.
+            commit_message (str, optional): Custom commit message.
+            branch (str, optional): Target branch (default: "development").
+
+            Behavior:
+            Authentication:
+            Uses Github(auth=Auth.Token(token)) (✅ good: avoids deprecated method).
+            
+            Access repository:
+            Retrieves repository object using get_repo(repo_name).
+
+            Read file content:
+            Reads local game state file into file_content.
+
+            Try to update the file in GitHub:
+            Tries to get file contents from the given branch.
+
+            If file exists:
+            Calls update_file() to update the file with new content.
+            Prints success message.
+            
+            If file doesn’t exist:
+            Catches the exception.
+            Creates the file in the repository using create_file().
+            Prints creation success message.
+
+            Outputs:
+            Prints status messages to terminal: whether the file was created or updated.
+
+file_name: main.py
+    functions:
+        main()
+            Purpose:
+            Determines how the program runs based on command-line arguments.
+
+            Detailed Behavior:
+            Startup Message:
+            Prints "Starting the Chess CLI..."
+
+            Load Game State from GitHub:
+            Calls GHI.getGameState().
+            ⚠️ Note: As we saw earlier, this currently doesn’t return data — probably needs improvement.
+
+            Command-line Argument Handling:
+            If no arguments are provided:
+            Prints "Displaying the GUI" (CLI in this case).
+            TODO: You wrote a note to add CLI logic here (Right now, it stops after the print).
+
+            If arguments are provided:
+            Checks the first argument (command).
+
+            Commands:
+
+            Command	Behavior
+            vote	- Expects a second argument (the move).
+            - Prints the move (currently placeholder).
+            - TODO: You noted to implement the vote logic.
+
+            stats	- Calls Tracker.test_participation_tracker() to show tracking info.
+
+            help	- Prints all available commands. Helpful for users!
+
+            test	- Runs a test suite:
+            - Calls DP.test1(),
+            - Calls Tracker.test_participation_tracker(),
+            - Runs the main game loop with game.main().
+
+            Unknown Command	- Prints "Unknown command" and displays help reminder.
+
+            Execution:
+            If the script is run directly, main() is executed.
+
+file_name: scheduler.py
+    functions: 
+        1. get_current_branch()
+            Purpose:
+            Dynamically retrieves the current Git branch name (fallback to "development" if it fails).
+
+            Process:
+            Runs git branch --show-current using subprocess.
+            Returns the branch name as a string, or "development" if the command fails.
+            Improvement Tip: (Optional) You can cache this or log for visibility.
+
+        2. scheduled_commit()
+            Purpose:
+            Job function that commits the game state to GitHub.
+
+            Process:
+            Prints timestamp for clarity.
+
+            Calls github_integration.commit_game_state_to_github() with:
+            GitHub token
+            Repo name
+            Game state file path
+            Commit message
+            Current branch name
+            Prints error if something fails.
+
+        3. start_scheduler()
+            Purpose:
+            Starts the APScheduler to run scheduled_commit() daily at the time specified in config.py.
+
+            Process:
+            Reads time from config file (expected format: "HH:MM").
+            Adds the job to the background scheduler using cron trigger.
+            Starts the scheduler.
+            Keeps the script alive using while True: time.sleep(1) until interrupted.
+
+            Bonus Improvement:
+            You can extend this to run at intervals or add multiple jobs!
+            Add logging for "next run time" for user clarity.
+
+file_name: team_management.py
+    functions:
+        1. get_team_info()
+            Purpose:
+            Retrieve and display info about all current teams.
+            Useful for CLI command like: python main.py teams or python main.py stats
+
+            Input:
+            Maybe none, if you’re loading from a game state file.
+            Optionally: filter parameter (e.g., team ID or team name).
+
+            Output:
+            Dictionary or printed summary of:
+            Team names/IDs
+            Members
+            Number of members
+
+            Example Usage:
+            teams = get_team_info()
+            print(teams)
+
+            Optional improvement:
+            Format as a table for CLI!
+            Support output as JSON for external tools.
+
+        2. balance_teams()
+            Purpose:
+            Ensure teams are balanced (fair number of players).
+            For example, if players join unevenly, redistribute them.
+
+            Input:
+            Current player list or game state data.
+
+            Output:
+            New team assignments or confirmation of balance.
+
+            Steps:
+            Count players in each team.
+            If imbalance detected:
+            Move players from larger team to smaller team.
+            Update the game state.
+
+        3. assign_team_id()
+            Purpose:
+            Assign a new player to a team when they join.
+            Auto-assign based on team sizes (to maintain balance).
+
+            Input:
+            Player identifier (name, ID, etc.)
+
+            Output:
+            Team ID (int or string), updated game state.
+
+            Example:
+            team_id = assign_team_id(player_id="Player123")
+            print(f"Player assigned to team {team_id}")
+
+            Steps:
+            Check which team has fewer players.
+            Assign the new player to that team.
+            Update and save game state.
+
+        4. main()
+            Purpose:
+            Entry point for running team management directly.
+            Can be for testing, or running balance manually.
+
+file_name: Tracker.py
+    functions:
+        
+
+                                                    
