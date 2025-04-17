@@ -7,6 +7,7 @@ UNICODE_PIECES = {
                 "P": "♟", "R": "♜", "N": "♞", "B": "♝", "Q": "♛", "K": "♚"
                 }
 
+# displays the board in a format HTML can understand
 def displayBoardAsString(board):
     # files are represented with letters A-H
     rows = []
@@ -28,10 +29,12 @@ def displayBoardAsString(board):
     rows.append("--A  B  C  D  E  F  G  H")
     return "\n".join(rows)
 
+# Sends the current team 
 def team(board):
     current_team = "White" if board.turn == chess.WHITE else "Black"
     return current_team
 
+# Tells if the move is legal or not
 def legal_move(board, move):
     try:
             # UCI = Universal Chess Interface (common interface used in chess engines)
