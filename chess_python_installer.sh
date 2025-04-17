@@ -3,7 +3,7 @@
 sudo apt update; sudo apt install zlib1g-dev build-essential libssl-dev ;
 # Set version and install prefix
 PY_VERSION=3.10.12
-INSTALL_DIR=$HOME/CCVS/.chessPython
+INSTALL_DIR=`pwd`/.chessPython
 
 # Download Python 3.10.12 source code
 wget https://www.python.org/ftp/python/$PY_VERSION/Python-$PY_VERSION.tgz
