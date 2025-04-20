@@ -4,6 +4,7 @@ import data_persistence as DP
 import chess
 
 
+
 def get_votes():
     pass
 
@@ -33,8 +34,13 @@ def output_to_test(data_dir: Path, data: str):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         file.write("This is a test." + timestamp + '\n')
         file.write(data+"\n\n")
-def find_vote_json_in_home():
-    home_base = Path("/home")
+
+
+def find_vote_json_in_home(home_dir: Path=None):
+
+    if (home_dir == None):
+        print("home_dir not defined")
+        home_base = Path("/home")
     existing = []
 
     for user_dir in home_base.iterdir():

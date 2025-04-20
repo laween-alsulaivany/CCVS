@@ -10,7 +10,11 @@ fi
 
 SCRIPT_PATH=$(find . -type f -path "*/bin/run_cron.sh" | head -n 1)
 
+
+
+# !!! This takes `pwd` and adds it to the THE_DIR in the run_cron.sh
 sed -i "s|^THE_DIR=.*|THE_DIR=\"$NEW_DIR\"|" $SCRIPT_PATH
+
 
 echo "Updated THE_DIR in .../bin/run_cron.sh to: $NEW_DIR"
 
