@@ -75,5 +75,14 @@ def main():
         print(f"Unknown command: {command}")
         print("Use 'help' for a list of available commands.")
 
+def save_test_to_vote_json(data: str):
+    vote_file = Path.home() / ".vote.json"
+
+    with open(vote_file, "w") as f:
+        json.dump(data, f)
+
+    print(f"Saved to {vote_file}")
+
+
 if __name__ == "__main__":
     main()
