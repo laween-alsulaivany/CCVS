@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Find the script
-SCRIPT_PATH=$(find . -type f -path "*/bin/run_cron.sh" | head -n 1)
+SCRIPT_PATH=$(find . -type f -path "*/scripts/run_cron.sh" | head -n 1)
 
 # Check if found
 if [ -z "$SCRIPT_PATH" ]; then
-    echo "Error: Could not find bin/run_cron.sh in subdirectories."
+    echo "Error: Could not find scripts/run_cron.sh in subdirectories."
     exit 1
 fi
 

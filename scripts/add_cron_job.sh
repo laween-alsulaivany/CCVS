@@ -8,7 +8,7 @@ if [ -z "$NEW_DIR" ]; then
 fi
 
 
-SCRIPT_PATH=$(find . -type f -path "*/bin/run_cron.sh" | head -n 1)
+SCRIPT_PATH=$(find . -type f -path "*/scripts/run_cron.sh" | head -n 1)
 
 
 
@@ -16,7 +16,7 @@ SCRIPT_PATH=$(find . -type f -path "*/bin/run_cron.sh" | head -n 1)
 sed -i "s|^THE_DIR=.*|THE_DIR=\"$NEW_DIR\"|" $SCRIPT_PATH
 
 
-echo "Updated THE_DIR in .../bin/run_cron.sh to: $NEW_DIR"
+echo "Updated THE_DIR in .../scripts/run_cron.sh to: $NEW_DIR"
 
 if [ -z "$SCRIPT_PATH" ]; then
 	echo "Error: Could not find bin/run..."
