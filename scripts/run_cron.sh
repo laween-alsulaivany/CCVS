@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THE_DIR="/home/judah/CCVS"
+THE_DIR="/home/chess/CCVS"
 
 cd $THE_DIR
 

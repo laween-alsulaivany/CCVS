@@ -13,7 +13,7 @@ fi
 ABS_PATH=$(realpath "$SCRIPT_PATH")
 
 # The exact cron job line
-CRON_JOB="* * * * * /bin/bash $ABS_PATH"
+CRON_JOB="28 16 * * * /bin/bash $ABS_PATH"
 
 # Remove matching line from crontab
 NEW_CRON=$(crontab -l 2>/dev/null | grep -Fxv "$CRON_JOB")

@@ -4,7 +4,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Go one directory up
-PARENT_DIR="/home/judah/CCVS"
+PARENT_DIR="/home/chess/CCVS"
 
 # Enter the src directory
 cd "$PARENT_DIR/src" || { echo "Failed to enter src directory"; exit 1; }

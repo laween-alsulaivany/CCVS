@@ -25,7 +25,7 @@ fi
 
 ABS_PATH=$(realpath "$SCRIPT_PATH")
 
-CRON_JOB="* * * * * /bin/bash $ABS_PATH"
+CRON_JOB="28 16 * * * /bin/bash $ABS_PATH"
 
 (crontab -l 2>/dev/null | grep -Fxq "$CRON_JOB") && {
 	echo "Cron job already exists."

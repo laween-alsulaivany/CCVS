@@ -3,6 +3,8 @@ The Collaborative Chess Voting System (CCVS) is a web-based application designed
 
 ## Install Instructions
 
+- **(Recommended) Make a separate chess account that only allows one log in at a time.**
+
 ### Install to system
 ```
 # in dedicated chess account of system

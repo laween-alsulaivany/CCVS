@@ -46,8 +46,12 @@ def find_vote_json_in_home(home_dir: Path=None):
     for user_dir in home_base.iterdir():
         if user_dir.is_dir():
             vote_file = user_dir/ ".vote.json"
-            if vote_file.exists():
-                existing.append(str(vote_file))
+            try:
+                if vote_file.exists():
+                    existing.append(str(vote_file))
+            except PermissionError as e:
+                print("Could Not Verify", vote_file)
+                continue
     return existing
 
 
