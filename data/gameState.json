@@ -1,0 +1,40 @@
+{
+  "comments": "\n        STRUCTURE\n        EntireGame = {\n            comments = \"This structure will be stored in the comments.\",\n            games = [\n                {\n                    gameId = 1,\n                    currentBoard = \"\" # a chess board fin array string\n                    turn = \"\" # white (w) or black (b), white goes first\n                    voteHistory = [\n                        \"a1b2\",\n                    ]\n                    teams = [\n                        [],     # white\n                        []      # black\n                    ]\n                }\n            ]\n\n        }\n        ",
+  "games": [
+    [
+      0,
+      "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "-1",
+      [],
+      [
+        [],
+        []
+      ]
+    ],
+    [
+      1,
+      "rnbqkbnr/pp2pppp/2pp4/6P1/8/2N5/PPPPPP1P/R1BQKBNR b KQkq - 0 3",
+      "w",
+      [
+        "g2g4",
+        "d7d6",
+        "b1c3",
+        "c7c6",
+        "g4g5"
+      ],
+      [
+        [
+          "ben",
+          "donovan",
+          "jonathan",
+          "laween"
+        ],
+        [
+          "james",
+          "judah",
+          "ugi"
+        ]
+      ]
+    ]
+  ]
+}

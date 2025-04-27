@@ -1,0 +1,14 @@
+{
+  "comments": "\n        STRUCTURE\n        EntireGame = {\n            comments = \"This structure will be stored in the comments.\",\n            games = [\n                {\n                    gameId = 1,\n                    currentBoard = [\"\",\"\",...] # array of strings\n                    turn = \"\" # white (w) or black (b), white goes first\n                    voteHistory = [\n                        \"a1b2\",\n                    ]\n                    teams = [\n                        [],     # white\n                        []      # black\n                    ]\n                }\n            ]\n\n        }\n        ",
+  "games": [
+    [
+      1,
+      "gASVTwEAAAAAAACMBWNoZXNzlIwFQm9hcmSUk5QpgZR9lCiMC29jY3VwaWVkX2NvlF2UKIoJAAAAAAAA//8ATf//ZYwFcGF3bnOUiggA/wAAAAD/AIwHa25pZ2h0c5SKCEIAAAAAAABCjAdiaXNob3BzlIoIJAAAAAAAACSMBXJvb2tzlIoJgQAAAAAAAIEAjAZxdWVlbnOUiggIAAAAAAAACIwFa2luZ3OUiggQAAAAAAAAEIwIcHJvbW90ZWSUSwCMCG9jY3VwaWVklIoJ//8AAAAA//8AjAhjaGVzczk2MJSJjAllcF9zcXVhcmWUTowKbW92ZV9zdGFja5RdlIwGX3N0YWNrlF2UjAR0dXJulIiMD2Nhc3RsaW5nX3JpZ2h0c5SKCYEAAAAAAACBAIwOaGFsZm1vdmVfY2xvY2uUSwCMD2Z1bGxtb3ZlX251bWJlcpRLAXViLg==",
+      [],
+      [
+        [],
+        []
+      ]
+    ]
+  ]
+}

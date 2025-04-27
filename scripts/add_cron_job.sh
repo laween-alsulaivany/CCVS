@@ -33,5 +33,5 @@ CRON_JOB="28 16 * * * /bin/bash $ABS_PATH"
 }
 
 (cronrtab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
-echo "Cron job added to run every minute: $ABS_PATH"
+echo "Cron job added to run every day at 4:29pm: $ABS_PATH"
 
