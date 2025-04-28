@@ -3,6 +3,9 @@
 cron: ## Run `make cron install` or `make cron uninstall`
 	@echo "Use 'make cron install' to add or 'make cron uninstall' to remove the cron job."
 
+cron-install:
+	@./scripts/add_cron_job.sh --home-dir="$(HOME_DIR)"
+
 install:
 	@./scripts/add_cron_job.sh
 
