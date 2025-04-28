@@ -5,6 +5,8 @@ import board_display
 
 board = chess.Board()
 
+app = Flask(__name__)
+
 def get_ip():
     # Try to get real IP if behind a proxy/load balancer
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
@@ -18,7 +20,7 @@ def get_ip():
     return f"Your IP address is: {ip}"
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 # This is the starting page
 @app.route("/", methods=["POST", "GET"])
 
@@ -32,7 +34,7 @@ def index():
 # This is the chess page
 @app.route("/chess", methods=["POST", "GET"])
 # Message displays if the vote was successful, move is the vote the user submitted, output is the board, and color is the team.
-def chess():
+def chess_view():
     message = ""
     # If a vote is made it will change move to that vote and change message.
     if request.method == "POST":
@@ -53,5 +55,6 @@ def chess():
     )
 
 # This is the url the website runs on
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+# commented out for gunicorn
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=80)
