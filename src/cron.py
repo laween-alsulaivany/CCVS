@@ -118,7 +118,7 @@ class Cron:
         """
 
         # this is most likely redundant but used for safety at the moment.
-        if self._CACHED_GAME_OBJECT == None:
+        if self._CACHED_GAME_OBJECT is None:
             with open(self._DATA_FILE, 'r') as file:
                 EntireGame = json.load(file)
                 self._CACHED_GAME_OBJECT = EntireGame
@@ -134,7 +134,7 @@ class Cron:
 
 
         self._DECODED_BOARD = chess.Board()
-        gameBoard = self._DECODED_BOARD
+        # gameBoard = self._DECODED_BOARD
 
         game = list()
 
@@ -151,6 +151,8 @@ class Cron:
             black = ['james', 'judah', 'ugi']
         else:
             # this is where the code needs to find users in the home directory.
+            # James: build teams here. 
+            # hOME directory
             pass
         
         # storing teams
@@ -183,7 +185,7 @@ class Cron:
 
     def moveGameState(self):
         """
-        check for new users
+        (low priority) check for new users
         collect votes in 
         move piece
         if game is over, start new one
@@ -216,6 +218,7 @@ class Cron:
             move = self._simulateNextMove()
             move = chess.Move.from_uci(move)
         else:
+            # Ugnius vote collecting logic here
             # logic of collecting votes here.
             pass
 
@@ -226,6 +229,26 @@ class Cron:
         
 
         # if game is over, start new one
+        # Judah: add this logic here
+        if self.BensFunction(): # True means game is over.
+            # make sure the last board is saved properly and a new game is stared.
+            game[1] = self._DECODED_BOARD.fen()
+            self._CACHED_GAME_OBJECT['games'][game[0]] = game
+            self.initiateGame()
+        
+        return
+
+
+    def BensFunction(self) -> bool:
+        """
+        Ben, please rename this function but have it return true or false 
+        depending on if the game should be ended or not.
+        """
+        board: chess.Board = self._DECODED_BOARD
+
+
+        return True
+
 
     def _simulateNextMove(self) -> str:
         """
@@ -239,8 +262,6 @@ class Cron:
         moves = [move.uci() for move in board.legal_moves]
 
         return moves[randint(0, len(moves)-1)]
-
-
 
 
 

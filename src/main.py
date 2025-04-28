@@ -12,6 +12,8 @@ import game
 import CLI_class
 import chess
 from game import displayBoard
+import json
+from pathlib import Path
 
 
 def main():

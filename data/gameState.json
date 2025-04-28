@@ -4,7 +4,7 @@
     [
       0,
       "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      "-1",
+      "w or b",
       [],
       [
         [],
@@ -13,15 +13,98 @@
     ],
     [
       1,
-      "rnbqkbnr/pp2pppp/2pp4/6P1/8/2N5/PPPPPP1P/R1BQKBNR b KQkq - 0 3",
+      "rnbqkb1r/pp2pppp/2pp3n/6P1/8/2N5/PPPPPP1P/R1BQKBNR w KQkq - 1 4",
       "w",
       [
         "g2g4",
         "d7d6",
         "b1c3",
         "c7c6",
-        "g4g5"
+        "g4g5",
+        "g8h6"
       ],
+      [
+        [
+          "ben",
+          "donovan",
+          "jonathan",
+          "laween"
+        ],
+        [
+          "james",
+          "judah",
+          "ugi"
+        ]
+      ]
+    ],
+    [
+      2,
+      "rnbqkbnr/pppppppp/8/8/8/3P4/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+      "w",
+      [
+        "d2d3"
+      ],
+      [
+        [
+          "ben",
+          "donovan",
+          "jonathan",
+          "laween"
+        ],
+        [
+          "james",
+          "judah",
+          "ugi"
+        ]
+      ]
+    ],
+    [
+      3,
+      "rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R b KQkq - 1 1",
+      "w",
+      [
+        "g1f3"
+      ],
+      [
+        [
+          "ben",
+          "donovan",
+          "jonathan",
+          "laween"
+        ],
+        [
+          "james",
+          "judah",
+          "ugi"
+        ]
+      ]
+    ],
+    [
+      4,
+      "rnbqkbnr/pppppppp/8/8/8/N7/PPPPPPPP/R1BQKBNR b KQkq - 1 1",
+      "w",
+      [
+        "b1a3"
+      ],
+      [
+        [
+          "ben",
+          "donovan",
+          "jonathan",
+          "laween"
+        ],
+        [
+          "james",
+          "judah",
+          "ugi"
+        ]
+      ]
+    ],
+    [
+      5,
+      "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "w",
+      [],
       [
         [
           "ben",
