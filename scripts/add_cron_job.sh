@@ -8,11 +8,15 @@ if [ -z "$NEW_DIR" ]; then
 fi
 
 
-SCRIPT_PATH=$(find . -type f -path "*/bin/run_cron.sh" | head -n 1)
+SCRIPT_PATH=$(find . -type f -path "*/scripts/run_cron.sh" | head -n 1)
 
+
+
+# !!! This takes `pwd` and adds it to the THE_DIR in the run_cron.sh
 sed -i "s|^THE_DIR=.*|THE_DIR=\"$NEW_DIR\"|" $SCRIPT_PATH
 
-echo "Updated THE_DIR in .../bin/run_cron.sh to: $NEW_DIR"
+
+echo "Updated THE_DIR in .../scripts/run_cron.sh to: $NEW_DIR"
 
 if [ -z "$SCRIPT_PATH" ]; then
 	echo "Error: Could not find bin/run..."
@@ -21,7 +25,7 @@ fi
 
 ABS_PATH=$(realpath "$SCRIPT_PATH")
 
-CRON_JOB="* * * * * /bin/bash $ABS_PATH"
+CRON_JOB="28 16 * * * /bin/bash $ABS_PATH"
 
 (crontab -l 2>/dev/null | grep -Fxq "$CRON_JOB") && {
 	echo "Cron job already exists."
@@ -29,5 +33,5 @@ CRON_JOB="* * * * * /bin/bash $ABS_PATH"
 }
 
 (cronrtab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
-echo "Cron job added to run every minute: $ABS_PATH"
+echo "Cron job added to run every day at 4:29pm: $ABS_PATH"
 

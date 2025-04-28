@@ -9,22 +9,30 @@ import github_integration as GHI
 import data_persistence as DP
 import Tracker
 import game
-from pathlib import Path
+import CLI_class
+import chess
+from game import displayBoard
 import json
+from pathlib import Path
 
 
 def main():
     print("Starting the Chess CLI...")
-
+    cli = CLI_class.CLI()
+    # initialize a board
+    board = chess.Board()
+    # get a list of legal moves
+    legal_moves = [move.uci() for move in board.legal_moves]
     data = GHI.getGameState()
 
     # handle the arguments
     if len(sys.argv) == 1:
-        print("Displaying the GUI")
+        print("Displaying the CLI")
         # Display the CLI
-
+        displayBoard(board) # don't know if you want the board displayed when this is called as well
+        cli.displayCLI()
         # TODO: Add logic for when no arguments are passed
-
+        # I suck at CL parsing crap so I'm leaving this to you lads
         return
 
     command = sys.argv[1].lower()
@@ -37,11 +45,14 @@ def main():
 
             # voting.py
 
-            # TODO: Add vote logic here
             print(vote)
-            save_test_to_vote_json(vote)
-
-            pass
+            if vote in board.legal_moves:
+                print("Vote successfully casted!")
+                board.push(vote)
+                displayBoard(board)
+            else:
+                print(f"Error validating vote \"{vote}\", first ensure vote follows this convention: \"e2e3\"\n" \
+                      f"Then ensure your vote is within the list of legal moves:\n{legal_moves}")
         else:
             print("did not provide a vote.")
 
