@@ -47,6 +47,7 @@ if [ ${#UNSAFE_FILES[@]} -gt 0 ]; then
   echo "Aborting the git pull for security. Please notify the IT department." >&2
   # Maybe email IT
   mail -s "Git Security Alert" laweenhamza@gmail.com <<< "Unsafe files detected in CCVS repo" # FIXME: change this to IT email
+  mail -s "Git Security Alert" judahnava02@gmail.com <<< "Unsafe files detected in CCVS repo" # FIXME: change this to IT email
   exit 1
   else
     # if we are here, it means that the files are safe to pull
