@@ -1,16 +1,20 @@
 #!/bin/bash
 
 THE_DIR="/home/chess/CCVS"
+# dynamic path to the repo branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 cd $THE_DIR
+
+
+
 
 # checking for the files to pull
 echo "Checking for files to pull"
 git fetch origin
 
 # get a list of the changed filees
-CHANGED_FILES=$(git diff --name-only origin/main..main)
-
+CHANGED_FILES=$(git diff --name-only $CURRENT_BRANCH..origin/$CURRENT_BRANCH)
 # TODO: pick the newer json file version
 SAFE_PATTERNS=(
   "data/"
@@ -44,12 +48,13 @@ if [ ${#UNSAFE_FILES[@]} -gt 0 ]; then
   # Maybe email IT
   mail -s "Git Security Alert" laweenhamza@gmail.com <<< "Unsafe files detected in CCVS repo" # FIXME: change this to IT email
   exit 1
+  else
+    # if we are here, it means that the files are safe to pull
+    echo "No unsafe files detected. Updating the database."
+    git pull origin $CURRENT_BRANCH
 fi
 
 
-# if we are here, it means that the files are safe to pull
-echo "No unsafe files detected. Updating the database."
-git pull origin main
 
 cd src
 
@@ -62,6 +67,6 @@ $THE_DIR/.chessPython/bin/python3 cron.py
 cd $THE_DIR
 git add data/
 git commit -m "Auto-update game state $(date '+%Y-%m-%d %H:%M:%S')"
-git push origin main
+git push origin $CURRENT_BRANCH
 
 echo "Cron job completed successfully at $(date)"
