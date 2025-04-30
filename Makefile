@@ -21,3 +21,19 @@ chess_install: ## Create /usr/bin/chess symlink
 chess_uninstall: ## Remove /usr/bin/chess symlink
 	@./scripts/uninstall_chess_cmd.sh
 
+python-deps: ## Install system packages required for Python build
+	sudo apt update && sudo apt install -y \
+		zlib1g-dev \
+		build-essential \
+		libssl-dev \
+		wget \
+		curl \
+		git \
+		make \
+		libbz2-dev \
+		libreadline-dev \
+		libsqlite3-dev \
+		libncursesw5-dev \
+		xz-utils \
+		libxml2-dev \
+		libxmlsec1-dev
