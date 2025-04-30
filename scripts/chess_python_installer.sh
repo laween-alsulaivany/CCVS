@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo apt update; sudo apt install zlib1g-dev build-essential libssl-dev ;
 # Set version and install prefix
 PY_VERSION=3.10.12
 INSTALL_DIR=`pwd`/.chessPython
