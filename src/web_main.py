@@ -27,7 +27,7 @@ def get_ip():
 def index():
     # When the button is pressed it sends a post command, redericting it to the chess page
     if request.method == "POST":
-        return redirect(url_for("chess"))
+        return redirect(url_for("chess_view"))
     else:
         return render_template("index.html" )
 

@@ -12,8 +12,8 @@ from typing import Dict, Optional, List
 
 # Overriding the piece displays from the chess library to make it prettier
 UNICODE_PIECES: Dict[str, str] = {
-    "p": "♙", "r": "♖", "n": "♘", "b": "♗", "q": "♕", "k": "♔",
-    "P": "♟", "R": "♜", "N": "♞", "B": "♝", "Q": "♛", "K": "♚"
+    "p": "♟", "r": "♜", "n": "♞", "b": "♝", "q": "♛", "k": "♚",
+    "P": "♙", "R": "♖", "N": "♘", "B": "♗", "Q": "♕", "K": "♔"
 }
 
 
