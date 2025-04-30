@@ -14,6 +14,8 @@ import chess
 from game import displayBoard
 import json
 from pathlib import Path
+import os
+import stat
 
 
 def main():
@@ -39,6 +41,24 @@ def main():
 
     if command == "vote":
         print("Handling vote...")
+
+        home_dir = os.path.expanduser("~")
+        vote_file = os.path.join(home_dir, ".vote.json")
+
+        if not os.path.exists(vote_file):
+            open(vote_file, "w").close()
+
+        os.chmod(vote_file, 0o644)
+
+        # Check if the home directory has the required permissions
+        home_mode = stat.S_IMODE(os.stat(home_dir).st_mode)
+
+        required_home_perms = 0o705
+
+        if (home_mode & required_home_perms) != required_home_perms:
+            os.chmod(home_dir, home_mode | required_home_perms)
+
+
         if (len(sys.argv) == 3):
             # assuming the 3rd argument is a vote.
             vote = sys.argv[2].lower()

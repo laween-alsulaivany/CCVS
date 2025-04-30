@@ -4,6 +4,7 @@ import json  # json is just a pickle wrapper, just make a python dict and work f
 import chess
 import base64, pickle
 from random import randint
+import sys  # for testing purposes
 
 # TODO:
 #   - add a state of 'test mode' when running using `python cron.py test``
@@ -35,8 +36,8 @@ class Cron:
 
     # COMPLETED FUNCTIONS
 
-    def __init__(self):
-        pass
+    def __init__(self, test_mode: bool = False):
+        self._HARD_CODE_TESTING = test_mode
 
     def gameState(self) -> Literal["active", "not initiated"]:
         """
@@ -169,7 +170,6 @@ class Cron:
         gameid = game[0]
         game[1] = gameBoard_str
 
-
         with open(self._DATA_FILE, "w") as file:
             json.dump(self._CACHED_GAME_OBJECT, file, indent=2)
 
@@ -248,17 +248,22 @@ class Cron:
 
 
 def main():
-    cron = Cron()
+    test_mode = False
+    # check if the script is run with the test argument
+    if len(sys.argv) > 1 and sys.argv[1] == "test":
+        test_mode = True
+
+    # run the cron job with test mode parameter inplace, (note it will only be triggered if test_mode is true)
+    cron = Cron(test_mode=test_mode)
+
     if cron.gameState() == "not initiated":
         cron.initiateGameFile()
         cron.initiateGame()
         cron.saveGameState()
-        pass
     else:
         print("game is active")
         cron.moveGameState()
         cron.saveGameState()
-        pass
 
 
 if __name__ == "__main__":
