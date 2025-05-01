@@ -18,11 +18,30 @@ import os
 import stat
 
 
+
+def getCurrentGameBoard():
+    DATA_FILE = (
+        Path(__file__)  # e.g. /…/project/src/cron.py
+        .resolve()  # make it absolute
+        .parent.parent  # => /…/project/src  # => /…/project
+        / "data"
+        / "gameState.json"
+        )
+    
+    with open(DATA_FILE, "r") as file:
+        EntireGame = json.load(file)
+
+    game = EntireGame["games"][-1]
+
+    return chess.Board(game[1])
+    
+
+
 def main():
     print("Starting the Chess CLI...")
     cli = CLI_class.CLI()
     # initialize a board
-    board = chess.Board()
+    board = getCurrentGameBoard()
     # get a list of legal moves
     legal_moves = [move.uci() for move in board.legal_moves]
     data = GHI.getGameState()
@@ -70,6 +89,9 @@ def main():
                 print("Vote successfully casted!")
                 board.push(vote)
                 displayBoard(board)
+                with open(vote_file, "w") as file:
+                    file.write(vote)
+
             else:
                 print(f"Error validating vote \"{vote}\", first ensure vote follows this convention: \"e2e3\"\n" \
                       f"Then ensure your vote is within the list of legal moves:\n{legal_moves}")

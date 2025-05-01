@@ -208,6 +208,9 @@ class Cron:
         else:
             # Ugnius vote collecting logic here
             # logic of collecting votes here.
+
+            # Collect votes first
+            
             pass
 
         # make the turn
