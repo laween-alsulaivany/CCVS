@@ -219,7 +219,7 @@ class Cron:
         game[3].append(move.uci())
 
         # if game is over, start new one
-        if self.BensFunction():  # True means game is over.
+        if self.GameOver():  # True means game is over.
             # make sure the last board is saved properly and a new game is stared.
             game[1] = self._DECODED_BOARD.fen()
             self._CACHED_GAME_OBJECT["games"][game[0]] = game
@@ -227,15 +227,16 @@ class Cron:
 
         return
 
-    def BensFunction(self) -> bool:
+    def GameOver(self) -> bool:
         """
         Ben, please rename this function but have it return true or false
         depending on if the game should be ended or not.
         """
         board: chess.Board = self._DECODED_BOARD
-
-        return True
-
+        if board.is_game_over():
+            return True
+        else:
+            return False
     def _simulateNextMove(self) -> str:
         """
         for testing pourposes, this will be run inside
