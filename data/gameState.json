@@ -186,10 +186,11 @@
     ],
     [
       9,
-      "rnbqkbnr/pppppppp/8/8/8/2P5/PP1PPPPP/RNBQKBNR b KQkq - 0 1",
+      "rnbqkbnr/pppppp1p/8/6p1/8/2P5/PP1PPPPP/RNBQKBNR w KQkq - 0 2",
       "w",
       [
-        "c2c3"
+        "c2c3",
+        "g7g5"
       ],
       [
         [
