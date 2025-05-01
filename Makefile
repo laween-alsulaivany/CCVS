@@ -1,10 +1,12 @@
+HOME_DIR ?= /home/chess
+
 .PHONY: cron install uninstall python_instance chess_install chess_uninstall
 
 cron: ## Run `make cron install` or `make cron uninstall`
 	@echo "Use 'make cron install' to add or 'make cron uninstall' to remove the cron job."
 
-cron-install:
-	@./scripts/add_cron_job.sh --home-dir="$(HOME_DIR)"
+cron-install: ## Install cron job (with optional HOME_DIR=/path override)
+	@./scripts/add_cron_job.sh --home-dir="$(HOME_DIR)" --prompt-token 
 
 install:
 	@./scripts/add_cron_job.sh
