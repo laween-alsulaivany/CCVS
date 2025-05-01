@@ -3,6 +3,7 @@ This file contains functionality for displaying a command line
 interface in a pleasing way.
 """
 
+import os
 import chess
 from typing import Any
 
@@ -11,7 +12,7 @@ class CLI:
     A class representing the Command Line Interface for the chess game.
     It keeps track of player statistics and displays game information.
     """
-    player: str = "Ben"
+    player: str = os.environ.get("USER", "Unnown")
     played_games: int = 0
     turn_number: int = 0
     wins: int = 0

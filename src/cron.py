@@ -1,10 +1,12 @@
-from typing import Literal
+from typing import Literal, Any, List
 from pathlib import Path
 import json  # json is just a pickle wrapper, just make a python dict and work from there
 import chess
 import base64, pickle
 from random import randint
 import sys  # for testing purposes
+import random
+from collections import Counter
 
 # TODO:
 #   - add a state of 'test mode' when running using `python cron.py test``
@@ -202,7 +204,7 @@ class Cron:
         # check for new users
 
         # collect votes
-        if self._HARD_CODE_TESTING:
+        if not self._HARD_CODE_TESTING:
             move = self._simulateNextMove()
             move = chess.Move.from_uci(move)
         else:
@@ -210,8 +212,37 @@ class Cron:
             # logic of collecting votes here.
 
             # Collect votes first
-            
-            pass
+            votes, users = self.findAndCollectVotes()
+
+            votes_f = []
+
+            # in a loop only keep votes from players allowed to vote
+            if game[2] == 'w':
+                for i in range(len(users)):
+                    if users[i] in game[4][0]:
+                        votes_f.append(votes[i])
+                
+            elif game[2] == 'b':
+                for i in range(len(users)):
+                    if users[i] in game[4][1]:
+                        votes_f.append(votes[i])
+                
+
+            votes = []
+            # in a loop only keep votes that are legal.
+            legal_moves = [move.uci() for move in self._DECODED_BOARD.legal_moves]
+            for vote in votes_f:
+                if vote in legal_moves:
+                    votes.append(vote)
+
+            # make the decision
+            vote = self.most_frequent_element(votes)
+            if vote is None:
+                vote = legal_moves[randint(0, len(legal_moves))]    
+            move = vote  
+
+
+            move = chess.Move.from_uci(move)
 
         # make the turn
         self._DECODED_BOARD.push(move)
@@ -235,6 +266,39 @@ class Cron:
         board: chess.Board = self._DECODED_BOARD
 
         return True
+
+    def findAndCollectVotes(self):
+
+        home_dir = self._HOME_DIRECTORY
+
+        if (home_dir is None):
+            print("home_dir not defined")
+            home_base = Path("/home/remote") if Path("/home/remote").exists() else Path("/home")
+        existing = []
+        users = []
+
+        for user_dir in home_base.iterdir():
+            if user_dir.is_dir():
+                vote_file = user_dir/ ".vote.json"
+                try:
+                    if vote_file.exists():
+                        vote = open(vote_file, 'r').read()
+                        existing.append(vote)
+                        users.append(user_dir.name)
+                except PermissionError as e:
+                    print("Could Not Verify", vote_file)
+                    continue
+        return (existing, users)
+
+    def most_frequent_element(self, elements: List[Any]) -> Any:
+        if not elements:
+            return None  # or raise ValueError("Empty list provided.")
+
+        counts = Counter(elements)
+        max_count = max(counts.values())
+        top_elements = [element for element, count in counts.items() if count == max_count]
+
+        return random.choice(top_elements)
 
     def _simulateNextMove(self) -> str:
         """

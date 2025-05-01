@@ -51,7 +51,7 @@ def main():
         print("Displaying the CLI")
         # Display the CLI
         displayBoard(board) # don't know if you want the board displayed when this is called as well
-        cli.displayCLI()
+        cli.displayCLI(board)
         # TODO: Add logic for when no arguments are passed
         # I suck at CL parsing crap so I'm leaving this to you lads
         return
@@ -85,9 +85,9 @@ def main():
             # voting.py
 
             print(vote)
-            if vote in board.legal_moves:
+            if chess.Move.from_uci(vote) in board.legal_moves:
                 print("Vote successfully casted!")
-                board.push(vote)
+                board.push(chess.Move.from_uci(vote))
                 displayBoard(board)
                 with open(vote_file, "w") as file:
                     file.write(vote)
