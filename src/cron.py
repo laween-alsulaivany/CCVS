@@ -204,15 +204,19 @@ class Cron:
         # check for new users
 
         # collect votes
-        if not self._HARD_CODE_TESTING:
+        if False: #if not self._HARD_CODE_TESTING:
             move = self._simulateNextMove()
             move = chess.Move.from_uci(move)
+            print("not collecting votes")
         else:
             # Ugnius vote collecting logic here
             # logic of collecting votes here.
 
             # Collect votes first
+            print("collecting votes")
             votes, users = self.findAndCollectVotes()
+            print(votes)
+            print(users)
 
             votes_f = []
 
@@ -268,7 +272,7 @@ class Cron:
         if board.is_game_over():
             return True
         else:
-            return True
+            return False
 
     def findAndCollectVotes(self):
 
@@ -303,7 +307,6 @@ class Cron:
 
         return random.choice(top_elements)
 
-            return False
 
     def _simulateNextMove(self) -> str:
         """

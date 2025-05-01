@@ -35,7 +35,7 @@ for FILE in $CHANGED_FILES; do
       break
     fi
   done
-  
+  IS_SAFE=0 
   if [ $IS_SAFE -eq 0 ]; then
     UNSAFE_FILES+=("$FILE")
   fi
