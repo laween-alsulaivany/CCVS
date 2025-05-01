@@ -6,16 +6,13 @@ The Collaborative Chess Voting System (CCVS) is a web-based application designed
 - **(Recommended) Make a separate chess account that only allows one log in at a time.**
 
 ### Install to system
-
-# Step 1 – Install system dependencies (run once with sudo)
+```
+# Two sudo commands are needed to install apt dependancies and to put chess command in /usr/bin
 sudo make python-deps
-
-# Step 2 – Set up user-local Python environment
-make python_instance
-
-# Step 3 – Register cron jobs and install chess command
-make cron install
 sudo make chess_install
+
+make python_instance
+make cron install
 
 ```
 
