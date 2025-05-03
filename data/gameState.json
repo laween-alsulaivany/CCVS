@@ -13,8 +13,8 @@
     ],
     [
       1,
-      "rnbqkbnr/1pppppp1/8/7p/p7/2PQ2P1/PP1PPP1P/RNB1KBNR w KQkq - 0 5",
-      "w",
+      "rnbqkbnr/1pppppp1/8/7p/p7/P1PQ2P1/1P1PPP1P/RNB1KBNR b KQkq - 0 5",
+      "b",
       [
         "c2c3",
         "h7h6",
@@ -23,7 +23,8 @@
         "d1c2",
         "a5a4",
         "c2d3",
-        "h6h5"
+        "h6h5",
+        "a2a3"
       ],
       [
         [
