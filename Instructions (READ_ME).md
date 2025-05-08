@@ -42,7 +42,7 @@ GITHUB_TOKEN=your_github_token
 to make generate your GitHub Personal Access Token. You can generate one by logging into GitHub, navigating to Settings > Developer settings > Personal access tokens > Tokens (classic),
 Enable public_repo and create the token. copy and paste that into your .env file. DO NOT DIRECTLY COPY IT TO YOUR CONFIG.PY.
 
-![Enable public_repo](image.png)
+![Enable public_repo](docs/image.png)
 
 # Project Structure
 

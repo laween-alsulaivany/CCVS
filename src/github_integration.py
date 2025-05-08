@@ -6,8 +6,19 @@ This will commit the game state file to the specified branch in the repository. 
 
 import os
 from github import Github, Auth
+import data_persistence as DP
+
+# functions to define
 
 
+<<<<<<< HEAD
+def getGameState():
+    data = DP.load_game_state()
+    return
+
+
+=======
+>>>>>>> main
 def commit_game_state_to_github(
         token: str,
         repo_name: str,

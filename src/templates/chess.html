@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <title>CHESS PAGE</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .output-box {
+            border: 2px solid #ccc;
+            padding: 10px;
+            width: fit-content;
+            background-color: #f9f9f9;
+            font-family: monospace;
+        }
+        .team-box {
+            text-align: left;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 1.6;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="output-box">{{ output | safe }}</div>
+            <div class="team-box">
+                <div>TEAM</div>
+                <div>WHITE</div>
+                <div>IS VOTING</div>
+            </div>
+        </div>
+    </body>
+</head>
+<body>
+    <form action="#" method="post">
+        <p><input type="submit" value="Vote"/>
+        <input type= "text" name="move" /></p>
+    </form>
+    <div>{{ message }}</div>
+    <p>Ex: c4g4</p>
+</body>
+</html>

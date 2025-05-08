@@ -1,0 +1,85 @@
+from datetime import datetime
+from pathlib import Path
+import data_persistence as DP
+import chess
+
+
+
+def get_votes():
+    pass
+
+def get_selected():
+    pass
+
+def tally_participation():
+    pass
+
+def main():
+    pass
+
+def go_to_data_dir() -> Path:
+
+    current_dir = Path.cwd()
+
+    data_dir = current_dir.parent / 'data'
+
+    if not data_dir.exists():
+        #TODO: make a condition if this does not work.
+        exit(1)
+    else:
+        return data_dir
+
+def output_to_test(data_dir: Path, data: str):
+    with open(data_dir / "test.txt", 'a') as file:
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        file.write("This is a test." + timestamp + '\n')
+        file.write(data+"\n\n")
+
+
+def find_vote_json_in_home(home_dir: Path=None):
+
+    if (home_dir == None):
+        print("home_dir not defined")
+        home_base = Path("/home")
+    existing = []
+
+    for user_dir in home_base.iterdir():
+        if user_dir.is_dir():
+            vote_file = user_dir/ ".vote.json"
+            try:
+                if vote_file.exists():
+                    existing.append(str(vote_file))
+            except PermissionError as e:
+                print("Could Not Verify", vote_file)
+                continue
+    return existing
+
+
+if __name__ == "__main__":
+    data_dir = go_to_data_dir()
+    # output_to_test(data_dir)
+    votes = find_vote_json_in_home()
+    votes_str = "\n".join(votes)
+    output_to_test(data_dir, votes_str)
+    
+    
+"""
+
+import requests
+
+def fetch_text_from_url(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises HTTPError for bad responses (4xx or 5xx)
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+        return None
+
+# Example usage:
+url = 'http://127.0.0.1/static/votes.txt'
+content = fetch_text_from_url(url)
+if content:
+    print(content)
+
+"""
