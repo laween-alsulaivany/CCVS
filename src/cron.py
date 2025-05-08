@@ -2,11 +2,11 @@ from typing import Literal, Any, List
 from pathlib import Path
 import json  # json is just a pickle wrapper, just make a python dict and work from there
 import chess
-import base64, pickle
 from random import randint
 import sys  # for testing purposes
 import random
 from collections import Counter
+import os
 
 # TODO:
 #   - add a state of 'test mode' when running using `python cron.py test``
@@ -40,6 +40,9 @@ class Cron:
 
     def __init__(self, test_mode: bool = False):
         self._HARD_CODE_TESTING = test_mode
+        if self._HOME_DIRECTORY is None:
+            remote = Path("/home/remote")
+            self._HOME_DIRECTORY = remote if remote.exists() else Path(os.path.expanduser("/home"))
 
     def gameState(self) -> Literal["active", "not initiated"]:
         """
@@ -153,7 +156,7 @@ class Cron:
             # James: build teams here. it needs to in the end have two variables.
             # white and black. Use self._HOME_DIRECTORY so set where users are.
             # hOME directory
-            pass
+            white, black = self.get_split_user_dirs()
 
         # storing teams
         game[4][0] = white
@@ -163,6 +166,22 @@ class Cron:
         self._CACHED_GAME_OBJECT["games"].append(game)
 
         return
+
+    def get_split_user_dirs(self):
+            """Reads user directories under self._HOME_DIRECTORY, excluding 'chess', and splits into two random lists."""
+            if not self._HOME_DIRECTORY.exists() or not self._HOME_DIRECTORY.is_dir():
+                raise ValueError(f"Invalid directory: {self._HOME_DIRECTORY}")
+
+            # Get all subdirectories, exclude ones named 'chess'
+            all_users = [
+                str(d.name) for d in self._HOME_DIRECTORY.iterdir()
+                if d.is_dir() and d.name != "chess"
+            ]
+
+            # Shuffle and split randomly
+            random.shuffle(all_users)
+            midpoint = len(all_users) // 2
+            return all_users[:midpoint], all_users[midpoint:]
 
     def saveGameState(self):
         gameBoard = self._DECODED_BOARD
@@ -253,6 +272,8 @@ class Cron:
         # add to vote history
         game[3].append(move.uci())
 
+        game[2] = "b" if game[2] == "w" else "w" 
+
         # if game is over, start new one
         if self.GameOver():  # True means game is over.
             # make sure the last board is saved properly and a new game is stared.
@@ -276,10 +297,10 @@ class Cron:
 
     def findAndCollectVotes(self):
 
-        home_dir = self._HOME_DIRECTORY
+        home_base = self._HOME_DIRECTORY
 
-        if (home_dir is None):
-            print("home_dir not defined")
+        if (home_base is None):
+            print("home_base not defined")
             home_base = Path("/home/remote") if Path("/home/remote").exists() else Path("/home")
         existing = []
         users = []
